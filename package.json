@@ -1,0 +1,44 @@
+{
+  "name": "maya-red-sms",
+  "version": "1.0.0",
+  "description": "SMS Module for Maya",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mayahq/mayadev/issues"
+  },
+  "homepage": "#readme",
+  "nodepath": "src/nodes",
+  "nodeRedModuleName": "maya-red-sms",
+  "node-red": {
+    "nodes": {
+      "send-sms": "src/nodes/sendSms/sendSms.node.js",
+      "sms-auth": "src/nodes/smsAuth/smsAuth.node.js"
+    }
+  },
+  "mayaDetails": {
+    "name": "maya-red-sms",
+    "version": "1.0.0",
+    "description": "SMS Module for Maya",
+    "author": "",
+    "type": "git",
+    "needsUserProfile": false,
+    "thumbnail": "",
+    "repository": {
+      "type": "git",
+      "url": "git+.git"
+    }
+  },
+  "dependencies": {
+    "@mayahq/module-sdk": "^2.2.2",
+    "messagebird": "^3.8.1",
+    "plivo": "^4.34.0",
+    "twilio": "^3.81.0"
+  }
+}

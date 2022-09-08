@@ -1,0 +1,131 @@
+<script type='text/javascript'>
+    RED.nodes.registerType("send-sms", {
+        category: "Maya Red Sms",
+        color: "#8BBDD9",
+        defaults: {
+            name: {
+                value: ""
+            },
+            isProfileConfigNode: {
+                value: false
+            },
+            SmsAuth: {
+                value: "",
+                type: "sms-auth"
+            },
+            message: {
+                value: ""
+            },
+            payloadTypemessage: {
+                value: "str"
+            },
+            to: {
+                value: ""
+            },
+            payloadTypeto: {
+                value: "str"
+            },
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "fa-file-code-o.png",
+        label: function() {
+            return this.name || "send-sms"
+        },
+        paletteLabel: "send-sms",
+        exportable: true,
+        oneditprepare: function() {
+            if (this.payloadTypemessage === null) {
+                if (this.message === "") {
+                    this.payloadTypemessage = "date"
+                } else {
+                    this.payloadTypemessage = "str"
+                }
+            } else if (this.payloadTypemessage === 'string' || this.payloadTypemessage === 'none') {
+                this.payloadTypemessage = "str"
+            }
+
+            $("#node-input-payloadTypemessage").val(this.payloadTypemessage)
+            $("#node-input-message").typedInput({
+                default: "str",
+                typeField: $("#node-input-payloadTypemessage"),
+                types: ["msg", "flow", "global", "str"]
+            })
+            $("#node-input-message").typedInput("type", this.payloadTypemessage)
+
+            if (this.payloadTypeto === null) {
+                if (this.to === "") {
+                    this.payloadTypeto = "date"
+                } else {
+                    this.payloadTypeto = "str"
+                }
+            } else if (this.payloadTypeto === 'string' || this.payloadTypeto === 'none') {
+                this.payloadTypeto = "str"
+            }
+
+            $("#node-input-payloadTypeto").val(this.payloadTypeto)
+            $("#node-input-to").typedInput({
+                default: "str",
+                typeField: $("#node-input-payloadTypeto"),
+                types: ["msg", "flow", "global", "str"]
+            })
+            $("#node-input-to").typedInput("type", this.payloadTypeto)
+
+        },
+        oneditsave: function() {},
+        oneditcancel: function() {},
+        oneditdelete: function() {},
+        oneditresize: function() {},
+        onpaletteadd: function() {},
+        onpaletteremove: function() {}
+    });
+</script>
+
+<script type="text/html" data-template-name="send-sms">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" style="width:70%;" placeholder="Name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-SmsAuth">SmsAuth</label>
+        <input type="text" id="node-input-SmsAuth"></input>
+    </div>
+    <div class="form-row">
+        <label for="node-input-message">message</label>
+        <input type="text" id="node-input-message"></input>
+        <input type="hidden" id="node-input-payloadTypemessage">
+    </div>
+    <div class="form-row">
+        <label for="node-input-to">to</label>
+        <input type="text" id="node-input-to"></input>
+        <input type="hidden" id="node-input-payloadTypeto">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="send-sms">
+    <h2>Description</h2>
+    <p>Query opens tabs based on criteria like URL, muted status</p>
+
+    <h2>Config</h2>
+    <dl class="message-properties">
+
+        <dt>payload<span class="property-type">various</span></dt>
+        <dd>The configured payload of the message.</dd>
+
+        <dt class="optional">topic <span class="property-type">string</span></dt>
+        <dd>An optional property</dd>
+
+    </dl>
+
+
+    <h2>Outputs</h2>
+    <dl class="message-properties">
+
+        <dt>payload<span class="property-type">various</span></dt>
+        <dd>The configured payload of the message.</dd>
+
+        <dt class="optional">topic <span class="property-type">string</span></dt>
+        <dd>An optional property</dd>
+
+    </dl>
+</script>
